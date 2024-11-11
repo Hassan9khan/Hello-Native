@@ -8,19 +8,19 @@ const index = () => {
 
   const valueEmail = () => {
     console.log(email);
-    setEmail("")
-  }
-  
+    setEmail("");
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text
-        style={{
-          fontSize: 30,
-        }}
-      >
-        Hello World React{" "}
-      </Text>
+      <View>
+        <Text
+          style={styles.heading}
+        >
+          Sign In {" "}
+        </Text>
+      </View>
+
       <TextInput
         style={styles.input}
         onChangeText={setEmail}
@@ -35,9 +35,13 @@ const index = () => {
 };
 
 const styles = StyleSheet.create({
+  heading: {
+    fontSize: 25,
+    fontWeight: 'bold',
+  },
   button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
     padding: 10,
   },
   input: {
@@ -48,8 +52,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "cyan",
-    alignItems: "center",
+    backgroundColor: "0f0f0f0",
+    // alignItems: "center",
     padding: 10,
   },
 });
