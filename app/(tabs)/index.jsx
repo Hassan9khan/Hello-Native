@@ -75,6 +75,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../config/config";
 import { Link } from "expo-router";
+import { TouchableOpacity } from "react-native";
 // import { createUserWithEmailAndPassword } from "firebase/auth";
 // import { auth, db } from '@/config/firebase/config';
 // import { collection, addDoc } from "firebase/firestore";
@@ -94,10 +95,10 @@ const Home = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        window.location = "signin";
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
+        console.log(error);
       });
 
     // try {
@@ -114,8 +115,34 @@ const Home = () => {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView>
-        <Text style={{ textAlign: "center", fontSize: 20, margin: 20 }}>
+      <SafeAreaView style={styles.box}>
+        <View>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 40,
+              margin: 20,
+              marginHorizontal: 100,
+              backgroundColor: "#c2f21e",
+              fontWeight: "bold",
+              borderRadius: 20,
+              fontStyle: "italic",
+              textDecorationLine: "underline",
+            }}
+          >
+            Indrive
+          </Text>
+        </View>
+        <Text
+          style={{
+            textAlign: "center",
+            fontSize: 25,
+            margin: 30,
+            color: "white",
+            fontWeight: "bold",
+            // fontFamily: "cambria"
+          }}
+        >
           Register User
         </Text>
         <TextInput
@@ -131,34 +158,43 @@ const Home = () => {
           placeholder="Enter your password"
           secureTextEntry={true}
         />
-        <View style={{ margin: 20 }}>
-          <Button title="Press me" onPress={registerUser} />
-        </View>
+        {/* <View style={{ margin: 20 , backgroundColor: "#c2f21e" }}>
+          <Button style={{ backgroundColor: "#c2f21e" }} title="Press me" onPress={registerUser} />
+        </View> */}
 
-        <View>
-          <FlatList
-            renderItem={({ item }) => {
-              return (
-                <View style={styles.item}>
-                  <Text style={styles.title}>{item.title}</Text>
-                </View>
-              );
-            }}
-            keyExtractor={(item) => item.id}
-          />
-        </View>
-        <Link href={"/"}>Home</Link>
+        <TouchableOpacity style={styles.button} onPress={registerUser}>
+          <Text style={styles.title}>Press Here</Text>
+        </TouchableOpacity>
+
+        <Link style={{ color: "#fff", margin: 12 }} href={"/signin"}>
+          Already a User ?
+        </Link>
       </SafeAreaView>
     </SafeAreaProvider>
   );
 };
 
 const styles = StyleSheet.create({
+  button: {
+    alignItems: "center",
+    backgroundColor: "#c2f21e",
+    padding: 10,
+    margin: 10,
+    borderRadius: 8,
+  },
+  box: {
+    backgroundColor: "#3f3f3f",
+    height: "100%",
+  },
   input: {
-    height: 40,
+    height: 50,
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    backgroundColor: "white",
+    // color: "#fff",
+    border: "none",
+    borderRadius: 8,
   },
   container: {
     flex: 1,
@@ -171,7 +207,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   title: {
-    fontSize: 32,
+    fontSize: 18,
   },
 });
 
